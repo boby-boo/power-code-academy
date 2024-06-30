@@ -1,0 +1,22 @@
+$main-color: #242735;
+$secondary-color: #332f65;
+$accent-color: #ff3459;
+$hover-color: #c7d9e3;
+$light-color: #fff;
+$dark-color: #000;
+
+@mixin template-flex($justify-content, $align-items) {
+    display: flex;
+    justify-content: $justify-content;
+    align-items: $align-items;
+}
+
+@mixin template-font($size, $weight, $color) {
+    font-size: $size + px;
+    font-weight: $weight;
+    color: $color;
+}
+
+@mixin template-transition($elementAnimate) {
+    transition: $elementAnimate 0.3s ease;
+}
