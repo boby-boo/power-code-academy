@@ -7,6 +7,4 @@ Site to project - **https://power-code-academy.netlify.app/**
 
 **Webpack**: The project utilizes Webpack, a powerful bundling tool, to streamline the development workflow. Webpack efficiently bundles JavaScript, SCSS, and other assets, optimizing performance and facilitating code organization.
 
-**Animation**: The application incorporates an animation library to introduce captivating visual effects, enhancing user engagement and interaction.
-
 **GSAP (GreenSock Animation Platform)**: GSAP is integrated into the project to animate elements dynamically as users scroll through the application. This feature enriches the browsing experience, adding smooth and captivating animations that make interaction more immersive and engaging.
