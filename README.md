@@ -1,5 +1,5 @@
-# Digital project
-Site to project - **https://digital-project-weld.vercel.app/**
+# PowerCode Academy
+Site to project - **https://power-code-academy.netlify.app/**
 
 ## Technologies Used in the Project:
 
