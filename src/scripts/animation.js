@@ -165,4 +165,32 @@ const animation = () => {
     });
 };
 
+export const animateSendForm = selector => {
+    gsap.fromTo(
+        selector,
+        {
+            display: 'flex',
+            opacity: 0,
+        },
+        {
+            display: 'flex',
+            opacity: 1,
+        },
+    );
+
+    setTimeout(() => {
+        gsap.fromTo(
+            selector,
+            {
+                display: 'flex',
+                opacity: 1,
+            },
+            {
+                display: 'none',
+                opacity: 0,
+            },
+        );
+    }, 2000);
+};
+
 export default animation;

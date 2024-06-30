@@ -1,5 +1,7 @@
+// import intlTelInput from 'intl-tel-input';
 import 'intl-tel-input/build/css/intlTelInput.css';
-import intlTelInput from 'intl-tel-input';
+import intlTelInput from 'intl-tel-input/intlTelInputWithUtils';
+import { animateSendForm } from './animation';
 
 const form = () => {
     const $form = document.querySelector('#form');
@@ -11,10 +13,18 @@ const form = () => {
         only_word: 'Только буквы',
         only_numbers: 'Только цифры',
         incorrect_mail: 'Не корректная почта',
+        incorrect_phone: 'Не корректный номер',
     };
 
     const input = document.querySelector('#phone');
-    intlTelInput(input);
+    const iti = intlTelInput(input, {
+        initialCountry: 'UA',
+        separateDialCode: true,
+        countryOrder: ['UA', 'US'],
+        autoPlaceholder: 'aggressive',
+        excludeCountries: ['RU'],
+        formatOnDisplay: true,
+    });
 
     const validatedForm = {
         isValidEmail: null,
@@ -93,19 +103,13 @@ const form = () => {
                 break;
             case 'tel':
                 validatedForm.isValidPhone = false;
-
                 if (input.value === '') {
                     addErrorClass(input, errorMessages.require);
                     return;
                 }
 
-                if (!input.value.match(/^[+-]?[0-9]+$/)) {
-                    addErrorClass(input, errorMessages.only_numbers);
-                    return;
-                }
-
-                if (input.value.length <= 9) {
-                    addErrorClass(input, errorMessages.to_short_number);
+                if (!iti.isValidNumber()) {
+                    addErrorClass(input, errorMessages.incorrect_phone);
                     return;
                 }
 
@@ -120,11 +124,23 @@ const form = () => {
     $form.addEventListener('submit', e => {
         const { isValidEmail, isValidText, isValidPhone } = validatedForm;
         e.preventDefault();
-
         $inputs.forEach(input => validationSchema(input));
 
         if (isValidEmail && isValidText && isValidPhone) {
-            $form.submit();
+            const formData = new FormData($form);
+            formData.set('phone', iti.getNumber());
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', $form.action, true);
+
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    animateSendForm('.success-submit');
+                } else {
+                    console.log('Form submission failed');
+                }
+            };
+            xhr.send(formData);
             $form.reset();
         }
     });
@@ -135,10 +151,5 @@ const form = () => {
         });
     });
 };
-
-// input.intlTelInput = intlTelInput(input, {
-//     preferredCountries: ['UA', 'US'],
-//     // utilsScript: 'node_modules/intl-tel-input/build/js/utils.js',
-// });
 
 export default form;

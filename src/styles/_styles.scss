@@ -107,22 +107,16 @@ body {
     --iti-path-flags-2x: url(assets/libs/flags@2x.png);
     --iti-path-globe-1x: url(assets/libs/globe.png);
     --iti-path-globe-2x: url(assets/libs/globe@2x.png);
-
-    // --iti-path-flags-1x: url(assets/image/flags.png);
-    // --iti-path-flags-2x: url(assets/image/flags@2x.png);
-    // --iti-path-globe-1x: url(assets/image/globe.png);
-    // --iti-path-globe-2x: url(assets/image/globe@2x.png);
-
-    // --iti-path-flags-1x: url(../node_modules/intl-tel-input/build/img/flags.png);
-    // --iti-path-flags-2x: url(../node_modules/intl-tel-input/build/img/flags@2x.png);
-    // --iti-path-globe-1x: url(../node_modules/intl-tel-input/build/img/globe.png);
-    // --iti-path-globe-2x: url(../node_modules/intl-tel-input/build/img/globe@2x.png);
     width: 100%;
     overscroll-behavior: contain;
 }
 
 .iti__country-name {
     color: #302e5a;
+}
+
+.iti__selected-dial-code {
+    font-size: 13px;
 }
 
 .iti__country-list {

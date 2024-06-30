@@ -93,6 +93,14 @@ module.exports = {
                     },
                 },
             },
+            {
+                test: /utils\.js$/,
+                include: /node_modules\/intl-tel-input\/build\/js/,
+                loader: 'file-loader',
+                options: {
+                    name: 'js/[name].[ext]',
+                },
+            },
         ],
     },
 };
